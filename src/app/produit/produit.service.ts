@@ -1,24 +1,10 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { DetailProduitComponent } from '../detail-produit/detail-produit.component';
+import { Injectable } from '@angular/core';
 
-export interface Produit {
-  id: number;
-  nom: string;
-  prix: number;
-  quantite: number;
-  image: string;
-  description: string;
-}
-@Component({
-  selector: 'app-produit',
-  standalone: true,
-  imports: [CommonModule, DetailProduitComponent],
-  templateUrl: './produit.component.html',
-  styleUrl: './produit.component.css',
+@Injectable({
+  providedIn: 'root'
 })
-export class ProduitComponent implements OnInit {
-  produits: Produit[] = [
+export class ProduitService {
+  private produits: Produit[] = [
     {
       id: 1,
       nom: 'Produit 1',
@@ -75,11 +61,11 @@ export class ProduitComponent implements OnInit {
     },
   ];
 
-  ngOnInit() {}
+  getProduits(): Produit[] {
+    return this.produits;
+  }
 
-  selectedProduit: Produit | null = null;
-
-  selectProduit(produit: Produit) {
-    this.selectedProduit = produit;
+  getProduitById(id: number): Produit | null {
+    return this.produits.find(produit => produit.id === id) || null;
   }
 }
