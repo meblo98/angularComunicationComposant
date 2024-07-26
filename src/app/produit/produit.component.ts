@@ -1,6 +1,7 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { DetailProduitComponent } from '../detail-produit/detail-produit.component';
+import localeFr from '@angular/common/locales/fr';
 
 export interface Produit {
   id: number;
@@ -10,6 +11,8 @@ export interface Produit {
   image: string;
   description: string;
 }
+registerLocaleData(localeFr, 'Fr');
+
 @Component({
   selector: 'app-produit',
   standalone: true,
@@ -18,6 +21,8 @@ export interface Produit {
   styleUrl: './produit.component.css',
 })
 export class ProduitComponent implements OnInit {
+
+
   produits: Produit[] = [
     {
       id: 1,
